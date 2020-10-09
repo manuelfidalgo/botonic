@@ -24,9 +24,13 @@
   ],
   "dependencies": {
     "@botonic/core": "~0.14.0",
+    "@testing-library/react": "^11.0.4",
     "axios": "^0.20.0",
     "emoji-picker-react": "^3.2.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "framer-motion": "^2.6.6",
+    "jest": "^26.5.2",
     "lodash.merge": "^4.6.2",
     "markdown-it": "^11.0.0",
     "react": "^16.13.1",

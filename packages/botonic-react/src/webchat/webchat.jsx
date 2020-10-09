@@ -391,6 +391,7 @@ export const Webchat = forwardRef((props, ref) => {
       if (getBlockInputs(rule, input.data)) {
         addMessageComponent(
           <Text
+            className='Text'
             id={input.id}
             from='user'
             blob={false}
@@ -416,6 +417,7 @@ export const Webchat = forwardRef((props, ref) => {
   const persistentMenu = () => {
     return (
       <OpenedPersistentMenu
+        className='OpenedPersistentMenu'
         onClick={closeMenu}
         options={persistentMenuOptions}
         borderRadius={webchatState.theme.style.borderRadius || '10px'}
@@ -656,17 +658,23 @@ export const Webchat = forwardRef((props, ref) => {
       return <CustomTriggerButton />
     }
     return (
-      <StyledTriggerButton style={{ ...triggerButtonStyle }}>
+      <StyledTriggerButton
+        className='StyledTriggerButton'
+        style={{ ...triggerButtonStyle }}
+      >
         {getTriggerImage() && (
-          <TriggerImage src={resolveImage(getTriggerImage())} />
+          <TriggerImage
+            className='TriggerImage'
+            src={resolveImage(getTriggerImage())}
+          />
         )}
       </StyledTriggerButton>
     )
   }
 
   const webchatMessageList = () => (
-    <WebchatMessageList style={{ flex: 1 }}>
-      {webchatState.typing && <TypingIndicator />}
+    <WebchatMessageList className='WebchatMessageList' style={{ flex: 1 }}>
+      {webchatState.typing && <TypingIndicator className='TypingIndicator' />}
     </WebchatMessageList>
   )
   const webchatReplies = () => <WebchatReplies replies={webchatState.replies} />
@@ -716,12 +724,14 @@ export const Webchat = forwardRef((props, ref) => {
     return (
       userInputEnabled && (
         <UserInputContainer
+          className='UserInputContainer'
           style={{
             ...getThemeProperty('userInput.style'),
           }}
         >
           {webchatState.isEmojiPickerOpen && (
             <OpenedEmojiPicker
+              className='OpenedEmojiPicker'
               height={webchatState.theme.style.height}
               onEmojiClick={handleSelectedEmoji}
               onClick={handleEmojiClick}
@@ -731,13 +741,18 @@ export const Webchat = forwardRef((props, ref) => {
             <FeaturesWrapper>
               <ConditionalAnimation>
                 <div onClick={handleMenu}>
-                  {CustomMenuButton ? <CustomMenuButton /> : <PersistentMenu />}
+                  {CustomMenuButton ? (
+                    <CustomMenuButton className='CustomMenuButton' />
+                  ) : (
+                    <PersistentMenu className='PersistentMenu' />
+                  )}
                 </div>
               </ConditionalAnimation>
             </FeaturesWrapper>
           )}
-          <TextAreaContainer>
+          <TextAreaContainer className='TextAreaContainer'>
             <Textarea
+              className='Textarea'
               name='text'
               onFocus={() => deviceAdapter.onFocus()}
               onBlur={() => deviceAdapter.onBlur()}
@@ -770,12 +785,16 @@ export const Webchat = forwardRef((props, ref) => {
           <FeaturesWrapper>
             {emojiPickerEnabled && (
               <ConditionalAnimation>
-                <EmojiPicker onClick={handleEmojiClick} />
+                <EmojiPicker
+                  className='EmojiPicker'
+                  onClick={handleEmojiClick}
+                />
               </ConditionalAnimation>
             )}
             {attachmentsEnabled && (
               <ConditionalAnimation>
                 <Attachment
+                  className='Attachment'
                   onChange={handleAttachment}
                   accept={getFullMimeWhitelist().join(',')}
                 />
@@ -784,7 +803,11 @@ export const Webchat = forwardRef((props, ref) => {
             {(sendButtonEnabled || CustomSendButton) && (
               <ConditionalAnimation>
                 <div onClick={sendTextAreaText}>
-                  {CustomSendButton ? <CustomSendButton /> : <SendButton />}
+                  {CustomSendButton ? (
+                    <CustomSendButton className='CustomSendButton' />
+                  ) : (
+                    <SendButton className='SendButton' />
+                  )}
                 </div>
               </ConditionalAnimation>
             )}
@@ -797,6 +820,7 @@ export const Webchat = forwardRef((props, ref) => {
   const webchatWebview = () => (
     <RequestContext.Provider value={webviewRequestContext}>
       <WebviewContainer
+        className='WebviewContainer'
         style={{
           ...getThemeProperty('webview.style'),
           ...mobileStyle,
@@ -876,6 +900,7 @@ export const Webchat = forwardRef((props, ref) => {
     >
       {!webchatState.isWebchatOpen && (
         <div
+          className='TriggerButton'
           onClick={event => {
             toggleWebchat(true)
             event.preventDefault()
@@ -886,6 +911,7 @@ export const Webchat = forwardRef((props, ref) => {
       )}
       {webchatState.isWebchatOpen && (
         <StyledWebchat
+          className='StyledWebchat'
           // TODO: Distinguis between multiple instances of webchat, e.g. `${uniqueId}-botonic-webchat`
           id={'botonic-webchat'}
           width={webchatState.width}
@@ -896,6 +922,7 @@ export const Webchat = forwardRef((props, ref) => {
           }}
         >
           <StyledWebchatHeader
+            className='StyledWebchatHeader'
             onCloseClick={() => {
               toggleWebchat(false)
             }}

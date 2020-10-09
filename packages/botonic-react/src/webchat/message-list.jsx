@@ -42,6 +42,7 @@ export const WebchatMessageList = props => {
 
   return (
     <StyledScrollbar
+      className='StyledScrollbar'
       // TODO: Distinguis between multiple instances of webchat, e.g. `${uniqueId}-botonic-scrollable`
       id='botonic-scrollable-content'
       scrollbar={scrollbarOptions}
@@ -60,7 +61,9 @@ export const WebchatMessageList = props => {
         </ConditionalWrapper>
       )}
       {webchatState.messagesComponents.map((e, i) => (
-        <StyledMessages key={i}>{e}</StyledMessages>
+        <StyledMessages className='StyledMessages' key={i}>
+          {e}
+        </StyledMessages>
       ))}
       {props.children}
     </StyledScrollbar>
